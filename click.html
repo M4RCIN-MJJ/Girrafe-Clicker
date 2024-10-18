@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M4RCIN_MJJ's Girrafe Clicker</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'game-over';
+            font-size: 10%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        @font-face {
+            font-family: game-over;
+            src: url(game-over.regular.ttf);
+        }
+        .image-container {
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .main-image {
+            max-height: 15vh;
+            width: auto; 
+        }
+        .timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: 'game-over';
+            font-size: 100px; 
+            color: white; 
+            background-image: url('background timer.png'); 
+            background-size: cover;
+            padding: 5px; 
+            border-radius: 5px; 
+        }
+        .upgrade-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .upgrade-buttons button {
+            margin: 0 5px;
+        }
+        .upgrade-buttons img {
+            height: 40px;
+            width: auto;
+        }
+        #clicker-image {
+            height: 400px;
+            width: auto;
+        }
+        p {
+            margin: 5px 0;
+            color: black;
+            font-size: 20px; 
+        }
+       .game-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .start-game-container {
+            position: absolute; 
+            top: 50%;
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 60vw; 
+            height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+         #start-game-image {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" src="dryp.mp3" loop></audio>
+    <div class="start-game-container" id="fullscreen-start">
+        <img src="OPENING SCREEN.png" alt="Start Game" id="start-game-image">
+    </div>
+    <div class="game-container" id="game-section" style="display: none;">
+        <center>
+            <div class="image-container">
+                <img src="moo-removebg-preview (2).png" class="main-image">
+                <div id="timer" class="timer" style="display: none;">
+                    <span id="time-left">10</span>
+                </div>
+            </div>
+            <div class="clicker">
+                <img src="żyrafa-removebg-preview.png" alt="Clicker Image" id="clicker-image">
+                <audio id="giraffe-sound" src="click-234708.mp3"></audio>
+            </div>
+            <p>AMOUNT OF GIRAFFES: <span id="click-count">0</span></p>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="LEAVES.png" style="height: 30px; width: 30px; margin-right: 5px;">
+                <p>NEXT UPGRADE COSTS: <span id="upgrade-cost">10</span> GIRRAFES</p>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="upgrade2.gif" style="height: 30px; width: 30px; margin-right: 5px;">
+                <p>SUPER UPGRADE COSTS: <span id="super-upgrade-cost">100</span> GIRRAFES</p>
+            </div>
+            <p>BUY UPGRADES HERE</p>
+            <p>↓↓↓↓↓</p>
+            <div class="upgrade-buttons">
+                <button id="upgrade-btn" style="border: none; background: none;">
+                    <img src="LEAVES.png" alt="Liście Image">
+                    <audio id="leaves-sound" src="yippee-tbh.mp3"></audio>
+                </button>
+                <button id="super-upgrade-btn" style="border: none; background: none;">
+                    <img src="upgrade2.gif" alt="Super Upgrade Image">
+                    <audio id="super-upgrade-sound" src="[appsgolem.com][00-00-00][00-00-06]_Rare_Achievement_-_Minecraft_S.mp3"></audio>
+                </button>
+            </div>
+        </center>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('start-game-image').addEventListener('click', function() {
+            document.getElementById('fullscreen-start').style.display = 'none';
+            document.getElementById('game-section').style.display = 'block';
+            const backgroundMusic = document.getElementById('background-music');
+            backgroundMusic.volume = 0.5;
+            backgroundMusic.play();
+        });
+    </script>
+</body>
+</html>

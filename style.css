@@ -1,0 +1,34 @@
+body {
+    font-family: 'game-over', sans-serif;
+    font-size: 12px;
+    background-image: url('image.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+.start-game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    z-index: 1000;
+}
+#start-game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    cursor: pointer;
+}
+.game-container {
+    text-align: center;
+}
