@@ -41,7 +41,7 @@ document.getElementById('upgrade-btn').addEventListener('click', function() {
     if (clickCount >= upgradeCost) {
         clickCount -= upgradeCost;
         clicksPerClick += 1;  // Increase the number of clicks per click
-        upgradeCost = Math.floor(upgradeCost * 1.5); // Increase upgrade cost
+        upgradeCost = Math.floor(upgradeCost * 2); // Increase upgrade cost
         updateGame();
         alert(`Upgrade successful! New click count: ${clickCount}, New upgrade cost: ${upgradeCost}`);
     } else {
@@ -57,7 +57,7 @@ document.getElementById('super-upgrade-btn').addEventListener('click', function(
         clickCount -= superUpgradeCost;
         superUpgradeActive = true;  // Enable super upgrade effect
         clickMultiplier = 2;  // Double the click value multiplier
-        superUpgradeCost = Math.floor(superUpgradeCost * 1.5); // Increase super upgrade cost
+        superUpgradeCost = Math.floor(superUpgradeCost * 5); // Increase super upgrade cost
         updateGame();
         alert("Super upgrade successful! Click multiplier is now 2x.");
     } else {
