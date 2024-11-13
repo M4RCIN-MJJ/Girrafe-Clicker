@@ -4,6 +4,8 @@ let upgradeCost = 10;
 let superUpgradeCost = 100;
 let clickMultiplier = 1;
 let superUpgradeActive = false;
+let timerInterval;
+let timeLeft = 10;  // Time for the super upgrade to last (in seconds)
 
 // Handle the "PLAY" button click to start the game
 document.getElementById('startGry').addEventListener('click', function() {
@@ -41,7 +43,7 @@ document.getElementById('upgrade-btn').addEventListener('click', function() {
     if (clickCount >= upgradeCost) {
         clickCount -= upgradeCost;
         clicksPerClick += 1;  // Increase the number of clicks per click
-        upgradeCost = Math.floor(upgradeCost * 2); // Increase upgrade cost
+        upgradeCost = Math.floor(upgradeCost * 1.5); // Increase upgrade cost
         updateGame();
         alert(`Upgrade successful! New click count: ${clickCount}, New upgrade cost: ${upgradeCost}`);
     } else {
@@ -56,14 +58,40 @@ document.getElementById('super-upgrade-btn').addEventListener('click', function(
     if (clickCount >= superUpgradeCost && !superUpgradeActive) {
         clickCount -= superUpgradeCost;
         superUpgradeActive = true;  // Enable super upgrade effect
-        clickMultiplier = 5;  // Double the click value multiplier
-        superUpgradeCost = Math.floor(superUpgradeCost * 5); // Increase super upgrade cost
+        clickMultiplier = 2;  // Double the click value multiplier
+        superUpgradeCost = Math.floor(superUpgradeCost * 1.5); // Increase super upgrade cost
         updateGame();
-        alert("Super upgrade successful! Click multiplier is now 2x.");
+        
+        // Start the timer for the super upgrade duration
+        startSuperUpgradeTimer();
+        alert("Super upgrade successful! Click multiplier is now 2x for 10 seconds.");
     } else {
         alert("Not enough giraffes or super upgrade already active.");
     }
 });
+
+// Start the timer when the super upgrade is activated
+function startSuperUpgradeTimer() {
+    // Show the timer in the corner
+    document.getElementById('timer').style.display = 'block';
+    timeLeft = 10; // Reset the timer to 10 seconds
+    document.getElementById('time-left').textContent = timeLeft;
+
+    // Update the timer every second
+    timerInterval = setInterval(function() {
+        timeLeft--;
+        document.getElementById('time-left').textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval); // Stop the timer
+            superUpgradeActive = false;  // Deactivate super upgrade
+            clickMultiplier = 1;  // Reset click multiplier to 1
+            updateGame();
+            document.getElementById('timer').style.display = 'none'; // Hide the timer
+            alert("Super upgrade has ended. Click multiplier reset.");
+        }
+    }, 1000);
+}
 
 // Update the game interface (display new values for clicks, upgrade costs, etc.)
 function updateGame() {
