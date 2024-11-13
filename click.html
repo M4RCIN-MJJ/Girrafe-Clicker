@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M4RCIN_MJJ's Girrafe Clicker</title>
+    <title>M4RCIN_MJJ's Giraffe Clicker</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -83,11 +83,70 @@
             align-items: center;
             z-index: 1000;
         }
-         #start-game-image {
+        #start-game-image {
             width: auto;
             height: 100%;
             object-fit: contain;
             cursor: pointer;
+            z-index: 1;
+        }
+
+        .start-buttons {
+            z-index: 2;
+            position: absolute;
+            height: 10%;
+            width: 50%;
+            bottom: 10px;
+            margin-inline: auto;
+            font-size: 40px;
+            background-color: whitesmoke;
+            cursor: pointer;
+            font-family: 'game-over';
+        }
+        #startGry {
+            left: 0;
+        }
+        #infoGry {
+            right: 0;
+        }
+        .start-buttons:hover {
+            background-color: lightgray;
+            color: black;
+            box-shadow: 3px 3px 5px black;
+        }
+
+        /* Infobox pełnoekranowy z przyciskiem zamknięcia */
+        #infobox {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 75vh;
+            background-color:lightgray;
+            color: black;
+            padding: 20px;
+            border-radius: 8px;
+            overflow: auto;
+            z-index: 1001;
+            font-size: 40px;
+        }
+        #infobox p {
+            font-size: 18px;
+        }
+        #close-infobox {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        #close-infobox:hover {
+            color: black;
         }
     </style>
 </head>
@@ -95,6 +154,8 @@
     <audio id="background-music" src="dryp.mp3" loop></audio>
     <div class="start-game-container" id="fullscreen-start">
         <img src="OPENING SCREEN.png" alt="Start Game" id="start-game-image">
+        <button id="startGry" class="start-buttons">PLAY</button>
+        <button id="infoGry" class="start-buttons">HOW TO PLAY?</button>
     </div>
     <div class="game-container" id="game-section" style="display: none;">
         <center>
@@ -109,6 +170,7 @@
                 <audio id="giraffe-sound" src="click-234708.mp3"></audio>
             </div>
             <p>AMOUNT OF GIRAFFES: <span id="click-count">0</span></p>
+            <p>VALUE PER CLICK: <span id="click-value">1</span> GIRAFFES</p>
             <div style="display: flex; justify-content: center; align-items: center;">
                 <img src="LEAVES.png" style="height: 30px; width: 30px; margin-right: 5px;">
                 <p>NEXT UPGRADE COSTS: <span id="upgrade-cost">10</span> GIRRAFES</p>
@@ -131,15 +193,19 @@
             </div>
         </center>
     </div>
+    
+    <!-- Infobox z instrukcjami -->
+    <div id="infobox">
+        <button id="close-infobox">X</button>
+        <p style="font-size: 40px;">If you are reading this, you are probably playing this game for the first time, so I want to say welcome!</p>
+        <p style="font-size: 40px;">Here are some tips on how to play:</p>
+        <ul>
+            <li>In this clicker game, you need to click on the giraffe image <img src="żyrafa-removebg-preview.png" style="height: 40px; width:40px;"> to collect points.</li>
+            <li>Use collected points to purchase upgrades <img src="LEAVES.png" style="height: 40px; width: 40px;"><img src="upgrade2.gif" style="height: 40px; width: 40px;"> and boost your click value.</li>
+            <li>Good Luck Playing</li>
+        </ul>
+    </div>
+    
     <script src="script.js"></script>
-    <script>
-        document.getElementById('start-game-image').addEventListener('click', function() {
-            document.getElementById('fullscreen-start').style.display = 'none';
-            document.getElementById('game-section').style.display = 'block';
-            const backgroundMusic = document.getElementById('background-music');
-            backgroundMusic.volume = 0.5;
-            backgroundMusic.play();
-        });
-    </script>
 </body>
 </html>
