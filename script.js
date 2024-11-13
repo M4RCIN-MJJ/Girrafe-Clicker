@@ -56,7 +56,7 @@ document.getElementById('super-upgrade-btn').addEventListener('click', function(
     if (clickCount >= superUpgradeCost && !superUpgradeActive) {
         clickCount -= superUpgradeCost;
         superUpgradeActive = true;  // Enable super upgrade effect
-        clickMultiplier = 2;  // Double the click value multiplier
+        clickMultiplier = 5;  // Double the click value multiplier
         superUpgradeCost = Math.floor(superUpgradeCost * 5); // Increase super upgrade cost
         updateGame();
         alert("Super upgrade successful! Click multiplier is now 2x.");
